@@ -19,7 +19,7 @@
 
         <div class="filter-area">
             <h4>Filter books</h4>
-            <input onchange="onSetFilterBy({txt:this.value})" type="search" placeholder="search"
+            <input oninput="onSetFilterBy({txt:this.value})" type="search" placeholder="search"
                 name="filter-by-search"><br>
             <p>Min Rate: <span title="Min Rate">0</span></p>
             <input onchange="onSetFilterBy({minRate:this.value})" value="0" type="range" name="minRate" min="0"
