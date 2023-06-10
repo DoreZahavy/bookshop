@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <title>Book Shop</title>
+</head>
+
+<body onload="onInit()">
+    <h1>Welcome to my Bookshop</h1>
+    <div>
+        <button onclick="onSetMode(false)">Table</button>
+        <button onclick="onSetMode(true)">Cards</button>
+    </div>
+    <div class="flex-container">
+
+        <div class="filter-area">
+            <h4>Filter books</h4>
+            <input onchange="onSetFilterBy({txt:this.value})" type="search" placeholder="search"
+                name="filter-by-search"><br>
+            <p>Min Rate: <span title="Min Rate">0</span></p>
+            <input onchange="onSetFilterBy({minRate:this.value})" value="0" type="range" name="minRate" min="0"
+                max="10">
+            <p>Max Price: <span title="Max Price">50</span>$</p>
+            <input onchange="onSetFilterBy({maxPrice:this.value})" value="50" type="range" name="maxPrice" min="0"
+                max="50">
+        </div>
+        <div class="grouping-area">
+
+            <h4 class="meta-data">Meta Data</h4>
+            <section class="grouping">
+                <h5><span></span> cheap books</h5>
+                <h5><span></span> normal priced books</h5>
+                <h5><span></span> expensive books</h5>
+            </section>
+
+        </div>
+    </div>
+    <!-- <div>
+        <button class="add-new-book" onclick="onOpenCreationModal()">Add New Book</button>
+        <button onclick="onSetMode(false)">Table</button>
+        <button onclick="onSetMode(true)">Cards</button>
+    </div> -->
+    <div class="cards-area">
+        <div class="card-sorting">
+            <img src="img/sort2.png" onclick="onSetSortBy('title')">Title
+            <img src="img/sort2.png" onclick="onSetSortBy('price')">Price
+            <img src="img/sort2.png" onclick="onSetSortBy('rate')">Rating
+        </div>
+        <div class="flex-cards">
+        
+            
+        </div>
+    </div>
+    <table class="books-container">
+        <thead>
+            <tr>
+                <th><img src="img/sort2.png" onclick="onSetSortBy('title')">Title</th>
+                <th><img src="img/sort2.png" onclick="onSetSortBy('price')">Price $</th>
+                <th><img src="img/sort2.png" onclick="onSetSortBy('rate')">Rating</th>
+                <th colspan="2"></th>
+            </tr>
+        </thead>
+        <tbody class="books-table">
+
+        </tbody>
+    </table>
+
+    <div class="pagination"></div>
+    <button class="add-new-book" onclick="onOpenCreationModal()">Add New Book</button>
+
+    <div class="read-modal">
+        <h2></h2>
+        <h4>Price: <span></span>$</h4>
+        <p></p>
+        <h4>Change Rating:</h4>
+        <input onchange="onRate(this.value)" type="number" value="0" name="rate" min="0" max="10">
+        <button onclick="onCloseModal()">Close</button>
+    </div>
+    <div class="creation-modal">
+        <h2>Title: <input type="text" name="add-title" placeholder="Title"></h2>
+        <h4>Price: <input type="number" min="0" max="50" name="add-price" placeholder="price">$</h4>
+        <p></p>
+        <!-- <h4>Change Rating:</h4> -->
+        <!-- <input onchange="onRate(this.value)" type="number" value="0" name="rate" min="0" max="10"> -->
+        <button onclick="onAddBook()">Add</button>
+        <button onclick="onCloseCreationModal()">Cancel</button>
+    </div>
+
+
+
+    <script src="js/services/bookshop-util.js"></script>
+    <script src="js/services/bookshop-service.js"></script>
+    <script src="js/bookshop-controller.js"></script>
+</body>
+
+</html>
