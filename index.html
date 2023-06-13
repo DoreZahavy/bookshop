@@ -10,35 +10,41 @@
 </head>
 
 <body onload="onInit()">
-    <h1>Welcome to my Bookshop</h1>
+    <h1 data-trans="welcome">Welcome to my Bookshop</h1>
+    <select name="langSelect" onchange="onSetLang(this.value)">
+        <option value="en">English</option>
+        <option value="he">עברית</option>
+    </select>
     <div>
-        <button onclick="onSetMode(false)">Table</button>
-        <button onclick="onSetMode(true)">Cards</button>
+        <button data-trans="table" onclick="onSetMode(false)">Table</button>
+        <button data-trans="cards" onclick="onSetMode(true)">Cards</button>
     </div>
     <div class="flex-container">
 
         <div class="filter-area">
-            <h4>Filter books</h4>
-            <input oninput="onSetFilterBy({txt:this.value})" type="search" placeholder="search"
+            <h4 data-trans="filter">Filter books</h4>
+            <input data-trans="search" oninput="onSetFilterBy({txt:this.value})" type="search" placeholder="search"
                 name="filter-by-search"><br>
-            <p>Min Rate: <span title="Min Rate">0</span></p>
+            <p><span data-trans="maxPrice">Max Price:</span> <span title="Min Rate">0</span></p>
             <input onchange="onSetFilterBy({minRate:this.value})" value="0" type="range" name="minRate" min="0"
                 max="10">
-            <p>Max Price: <span title="Max Price">50</span>$</p>
+            <p><span data-trans="maxPrice">Max Price:</span> <span title="Max Price">50</span><span
+                    data-trans="cur">$</span></p>
             <input onchange="onSetFilterBy({maxPrice:this.value})" value="50" type="range" name="maxPrice" min="0"
                 max="50">
         </div>
         <div class="grouping-area">
 
-            <h4 class="meta-data">Meta Data</h4>
+            <h4 data-trans="data" class="meta-data">Meta Data</h4>
             <section class="grouping">
-                <h5><span></span> cheap books</h5>
-                <h5><span></span> normal priced books</h5>
-                <h5><span></span> expensive books</h5>
+                <h5><span></span> <span data-trans="cheap">cheap books</span></h5>
+                <h5><span></span> <span data-trans="normal">normal priced books</span></h5>
+                <h5><span></span> <span data-trans="expensive">expensive books</span></h5>
             </section>
 
         </div>
     </div>
+    <!-- <span data-trans="filter"></span> -->
     <!-- <div>
         <button class="add-new-book" onclick="onOpenCreationModal()">Add New Book</button>
         <button onclick="onSetMode(false)">Table</button>
@@ -46,21 +52,21 @@
     </div> -->
     <div class="cards-area">
         <div class="card-sorting">
-            <img src="img/sort2.png" onclick="onSetSortBy('title')">Title
-            <img src="img/sort2.png" onclick="onSetSortBy('price')">Price
-            <img src="img/sort2.png" onclick="onSetSortBy('rate')">Rating
+            <img src="img/sort2.png" onclick="onSetSortBy('title')"><span data-trans="title">Title</span>
+            <img src="img/sort2.png" onclick="onSetSortBy('price')"><span data-trans="price">Price</span>
+            <img src="img/sort2.png" onclick="onSetSortBy('rate')"><span data-trans="rate">Rating</span>
         </div>
         <div class="flex-cards">
-        
-            
+
+
         </div>
     </div>
     <table class="books-container">
         <thead>
             <tr>
-                <th><img src="img/sort2.png" onclick="onSetSortBy('title')">Title</th>
-                <th><img src="img/sort2.png" onclick="onSetSortBy('price')">Price $</th>
-                <th><img src="img/sort2.png" onclick="onSetSortBy('rate')">Rating</th>
+                <th><img src="img/sort2.png" onclick="onSetSortBy('title')"><span data-trans="title">Title</span></th>
+                <th><img src="img/sort2.png" onclick="onSetSortBy('price')"><span data-trans="price">Price</span> <span data-trans="cur">$</span></th>
+                <th><img src="img/sort2.png" onclick="onSetSortBy('rate')"><span data-trans="rate">Rating</span></th>
                 <th colspan="2"></th>
             </tr>
         </thead>
@@ -70,31 +76,35 @@
     </table>
 
     <div class="pagination"></div>
-    <button class="add-new-book" onclick="onOpenCreationModal()">Add New Book</button>
+    <button data-trans="add-new" class="add-new-book" onclick="onOpenCreationModal()">Add New Book</button>
 
     <div class="read-modal">
         <h2></h2>
-        <h4>Price: <span></span>$</h4>
+        <h4><span data-trans="price">Price</span>: <span data="pr"></span><span data-trans="cur">$</span></h4>
         <p></p>
-        <h4>Change Rating:</h4>
+        <h4 data-convert="update-rating">Change Rating:</h4>
         <input onchange="onRate(this.value)" type="number" value="0" name="rate" min="0" max="10">
         <button onclick="onCloseModal()">Close</button>
     </div>
+
     <div class="creation-modal">
-        <h2>Title: <input type="text" name="add-title" placeholder="Title"></h2>
-        <h4>Price: <input type="number" min="0" max="50" name="add-price" placeholder="price">$</h4>
+        <h2><span data-trans="title">Title</span>: <input data-trans="title" type="text" name="add-title" placeholder="Title"></h2>
+        <h4><span data-trans="price">Price</span>: <input data-trans="price" type="number" min="0" max="50" name="add-price"
+                placeholder="price"><span data-trans="cur">$</span></h4>
         <p></p>
         <!-- <h4>Change Rating:</h4> -->
         <!-- <input onchange="onRate(this.value)" type="number" value="0" name="rate" min="0" max="10"> -->
-        <button onclick="onAddBook()">Add</button>
-        <button onclick="onCloseCreationModal()">Cancel</button>
+        <button data-trans="add" onclick="onAddBook()">Add</button>
+        <button data-trans="cancel" onclick="onCloseCreationModal()">Cancel</button>
     </div>
 
 
 
-    <script src="js/services/bookshop-util.js"></script>
-    <script src="js/services/bookshop-service.js"></script>
-    <script src="js/bookshop-controller.js"></script>
+    <script src="js/lib/hammer.js"></script>
+    <script src="js/services/i18n.service.js"></script>
+    <script src="js/services/util.service.js"></script>
+    <script src="js/services/bookshop.service.js"></script>
+    <script src="js/bookshop.controller.js"></script>
 </body>
 
 </html>
